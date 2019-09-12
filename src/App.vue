@@ -30,7 +30,7 @@ export default {
       const URL = `https://api.thecatapi.com/v1/images/search`;
       const API_KEY = `35670411-1d12-4c56-8688-489a27765761`;
       const vm = this;
-      for(let i = 0; i < 17; i++) {
+      for(let i = 0; i < 57; i++) {
         vm.proms.push(fetch(URL, {
             headers: {
               "x-api-key": API_KEY,
@@ -81,9 +81,11 @@ export default {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(5, 20%);
-    grid-template-rows: repeat(5, auto);
-    grid-template-areas: ". . . . ." ". kitty kitty kitty ." ". kitty kitty kitty ." ". kitty kitty kitty ." ". . . . .";
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5 , minmax(200px, 1fr));
+    grid-auto-rows: minmax(200px, 1fr);
+    grid-auto-columns: 1fr;
+    grid-template-areas: ". . . . ." ". kitty kitty kitty ." ". kitty kitty kitty ." ". kitty kitty kitty ." ". . . . . ";
 }
 .bigkitty {
     grid-area: kitty;
@@ -91,5 +93,6 @@ export default {
 
 body {
     background-color: #eee;
+    margin: 0;
 }
 </style>
