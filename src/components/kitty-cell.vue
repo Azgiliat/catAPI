@@ -1,14 +1,18 @@
 <template>
 <div class="container__kitty-cell kitty-cell" v-bind:class="{bigkitty: info.isBig}">
-  <img :src="info.url">
+  <loader v-if="!loaded" />
+  <img :src="info.url" @load="imgLoaded">
 </div>
 </template>
 
 
 <script>
+import loader from './loader.vue';
 export default {
   data: function() {
-    return {}
+    return {
+      loaded: false,
+    }
   },
   props: {
     info: {
@@ -16,10 +20,22 @@ export default {
       required: true,
     }
   },
+  components: {
+    loader,
+  },
+  methods: {
+    imgLoaded() {
+      this.loaded = true;
+    },
+  },
 };
 </script>
 
 <style lang="scss">
+.kitty-cell {
+    position: relative;
+}
+
 img {
     width: 100%;
     height: 100%;
